@@ -14,10 +14,15 @@ puts "#{server_obj.id}"
 
 connection.tags.create(resource_id: server_obj.id, key: 'Name', value: 'automated_build')
 connection.tags.create(resource_id: server_obj.id, key: 'environment', value: 'devops')
+mytags = connection.tags.get('environment')
+puts "#{mytags}"
+puts "#{mytags[0].resource_id}"
+
 
 
 
 #Test getting back data
-#test = connection.servers.get("i-e079870e")
-#puts "#{test.public_ip_address}"
-#puts "#{test.availability_zone}"
+test = connection.servers.get(server_obj.id)
+puts "#{test.public_ip_address}"
+puts "#{test.availability_zone}"
+puts "#{test.dns_name}"
