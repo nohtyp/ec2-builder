@@ -8,9 +8,16 @@ connection = Fog::Compute.new({
   })
 
 
-sc = connection.servers.create(flavor_id: 't1.micro', image_id: 'ami-7c807d14', name: 'foster-instance')
-sc.wait_for { ready? }
+server_obj = connection.servers.create(flavor_id: 't1.micro', image_id: 'ami-7c807d14')
+server_obj.wait_for { ready? }
+puts "#{server_obj.id}"
 
-sc = connection.servers.get('i-0e8c7fe5')
-connection.tags.create(resource_id: 'i-40f201ab', key: 'key', value: 'staging')
-puts "server is #{sc.identity}"
+connection.tags.create(resource_id: server_obj.id, key: 'Name', value: 'automated_build')
+connection.tags.create(resource_id: server_obj.id, key: 'environment', value: 'devops')
+
+
+
+#Test getting back data
+#test = connection.servers.get("i-e079870e")
+#puts "#{test.public_ip_address}"
+#puts "#{test.availability_zone}"
