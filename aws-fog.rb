@@ -17,6 +17,7 @@ mytags = connection.tags.get('environment')
 puts "#{mytags}"
 
 mytags.select { |x| puts "#{x.resource_id}" if x.value == 'devops' }
+#mytags.select { |x| connection.terminate_instances(x.resource_id) if x.value == 'devops' }
 
 #Test getting back data
 test = connection.servers.get(server_obj.id)
