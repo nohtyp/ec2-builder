@@ -12,11 +12,12 @@ server_obj = connection.servers.create(flavor_id: 't1.micro', image_id: 'ami-7c8
 server_obj.wait_for { ready? }
 puts "#{server_obj.id}"
 
-connection.tags.create(resource_id: server_obj.id, key: 'Name', value: 'automated_build')
-connection.tags.create(resource_id: server_obj.id, key: 'environment', value: 'devops')
+connection.tags.create(resource_id: server_obj.id, key: 'Name', value: 'thomas_build')
+connection.tags.create(resource_id: server_obj.id, key: 'environment', value: 'testing')
 mytags = connection.tags.get('environment')
 puts "#{mytags}"
-puts "#{mytags[0].resource_id}"
+
+mytags.select { |x| puts "#{x.resource_id}" if x.value == 'devops' }
 
 
 
