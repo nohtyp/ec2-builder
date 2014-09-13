@@ -7,7 +7,6 @@ connection = Fog::Compute.new({
   :aws_secret_access_key   => '' 
   })
 
-
 server_obj = connection.servers.create(flavor_id: 't1.micro', image_id: 'ami-7c807d14')
 server_obj.wait_for { ready? }
 puts "#{server_obj.id}"
@@ -18,9 +17,6 @@ mytags = connection.tags.get('environment')
 puts "#{mytags}"
 
 mytags.select { |x| puts "#{x.resource_id}" if x.value == 'devops' }
-
-
-
 
 #Test getting back data
 test = connection.servers.get(server_obj.id)
