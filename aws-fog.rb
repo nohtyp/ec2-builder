@@ -19,11 +19,6 @@ connection.tags.create(resource_id: server_obj.id, key: 'environment', value: 'd
 mytags = connection.tags.get('environment')
 puts "#{mytags}"
 
-#connection.tags.create(resource_id: server_obj.id, key: 'Name', value: 'automate_build5')
-#connection.tags.create(resource_id: server_obj.id, key: 'environment', value: 'devops')
-#mytags = connection.tags.get('environment')
-#puts "#{mytags}"
-
 #mytags.select { |x| puts "#{x.resource_id}" if x.value == 'devops' }
 #mytags.select { |x| connection.terminate_instances(x.resource_id) if x.value == 'devops' }
 
