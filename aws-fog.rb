@@ -5,7 +5,7 @@ connection = Fog::Compute.new({
   :provider                => 'AWS'
   })
 
-<<<<<<< HEAD
+
 #This is for VPC setup
 server_obj = connection.servers.create(flavor_id: 't1.micro', image_id: 'ami-7c807d14',key_name: 'aws-devops', security_group_ids:["sg-c46649a1"], subnet_id: 'subnet-de6b9987')
 
